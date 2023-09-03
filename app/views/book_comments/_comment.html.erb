@@ -1,0 +1,23 @@
+<div>
+  <p>
+  　<% book.book_comments.each do |book_comment| %>
+    <%= image_tag book_comment.user.get_profile_image,size: "100x100" %>
+    <%= book_comment.user.name %>
+    <%= book_comment.comment %>
+      <% if book_comment.user == current_user %>
+        <%= link_to "Destroy", book_book_comment_path(book,book_comment), method: :delete, class: "btn btn-sm btn-danger p-0 p-1", style: "font-size: 8px;" %>
+      <% end %>
+   <% end %>
+   </p>
+</div>
+
+
+<%= form_with model: [book, @book_comment] do |f| %>
+ <div class="form-label">
+  <%= f.text_area :comment, class: "form-control", style: "width:250%", rows: '5', placeholder: "コメントをここに" %>
+ </div>
+  <%= f.submit "送信する" %>
+<% end %>
+
+
+
