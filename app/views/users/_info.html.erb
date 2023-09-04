@@ -8,6 +8,9 @@
 	  <th>introduction</th>
 	  <th><%= user.introduction %></th>
   </tr>
+  <tr>
+    <td><%= render "relationships/follow", user: user %></td>
+  </tr>
 </table>
 
 <div class='row'>
