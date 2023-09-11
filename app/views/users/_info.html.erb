@@ -10,6 +10,7 @@
   </tr>
   <tr>
     <th><%= render "relationships/follow", user: user %></th>
+    <th><%= render "show", user: user, isRoom: @isRoom ,roomId: @roomId, room: @room, entry: @entry %></th>
   </tr>
 </table>
 
