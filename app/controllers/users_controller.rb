@@ -8,6 +8,11 @@ class UsersController < ApplicationController
     @book = Book.new
     @following_users = @user.following_users
     @follower_users = @user.follower_users
+    @books = @user.books.page(params[:page]).reverse_order
+    @today_book =  @books.created_today
+    @yesterday_book = @books.created_yesterday
+    @this_week_book = @books.created_this_week
+    @last_week_book = @books.created_last_week
   end
 
   def index

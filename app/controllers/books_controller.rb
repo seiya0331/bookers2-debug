@@ -10,8 +10,6 @@ class BooksController < ApplicationController
     @user = @book.user
     @booknew = Book.new
     @book_comment = BookComment.new
-
-
   end
 
   def index
@@ -31,7 +29,7 @@ class BooksController < ApplicationController
       redirect_to book_path(@book), notice: "You have created book successfully."
     else
       @books = Book.all
-      render :'index'
+      render 'index'
     end
   end
 
