@@ -1,17 +1,17 @@
 <table class='table'>
-  <tr><%= image_tag user.get_profile_image, size:'100x100' %></tr>
+  <tr><%= image_tag @user.get_profile_image, size:'100x100' %></tr>
   <tr>
 	  <th>name</th>
-	  <th><%= user.name %></th>
+	  <th><%= @user.name %></th>
   </tr>
   <tr>
 	  <th>introduction</th>
-	  <th><%= user.introduction %></th>
+	  <th><%= @user.introduction %></th>
   </tr>
   <tr>
-    <th><%= render "relationships/follow", user: user %></th>
+    <th><%= render "relationships/follow", user: @user %></th>
     <th>
-      <% if current_user != user && current_user.following?(user) && user.following?(current_user) %>
+      <% if current_user != @user && current_user.following?(@user) && user.following?(current_user) %>
         <%= link_to 'チャットを始める', chat_path(user.id), class: "ml-3" %>
       <% end %>
     </th>
@@ -19,7 +19,7 @@
 </table>
 
 <div class='row'>
-  <%= link_to edit_user_path(user), class: "btn btn-outline-secondary btn-block" do %>
+  <%= link_to edit_user_path(@user), class: "btn btn-outline-secondary btn-block" do %>
     <i class="fas fa-user-cog"></i>
   <% end %>
 </div>

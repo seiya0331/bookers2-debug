@@ -3,9 +3,9 @@ class GroupsController < ApplicationController
   before_action :ensure_correct_user, only: [:edit, :update]
   
   def index
-      @book = Book.new
-      @groups = Group.all
-      @user = User.find(current_user.id)
+    @book = Book.new
+    @groups = Group.all
+    @user = User.find(current_user.id)
   end
   
   def show
