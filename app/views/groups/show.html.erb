@@ -2,8 +2,8 @@
 <%= flash[:notice] %>
   <div class='row'>
     <div class='col-md-3'>
-    <%= render "users/info", locals: { user: @user }%>
-    <%= render "books/form", locals: { book: @book } %>
+    <%= render "users/info", user: current_user %>
+    <%= render "books/form", book: @book %>
     </div>
     <div class='col-md-8 offset-md-1'>
       <h2>Group Detail</h2>
@@ -29,20 +29,18 @@
             <td><%= @group.name %></td>
             <td><%= @group.introduction %></td>
             <td>
+              <% @group.users.each do |user| %>
+                <li style="list-style:none;"><%= user.name %></li>
+              <% end %>
+            </td>
+            <td>
               <% if @group.owner_id == current_user.id %>
                 <%= link_to "Edit", edit_group_path(@group), class: "btn btn-success" %>
-              <% else %>
-              <% if @group.include_user?(current_user) %>
+              <% elsif @group.include_user?(current_user) %>
                 <%= link_to "Leave this group", group_group_users_path(@group), method: :delete, class: "btn btn-danger" %>
               <% else %>
                 <%= link_to "Join this group", group_group_users_path(@group), method: :post, class: "btn btn-success" %>
               <% end %>
-              <% end %>
-            </td>
-            <td>
-                <% @group.users.each do |user| %>
-                  <li style="list-style:none;"><%= user.name %></li>
-                <% end %>
             </td>
           </tr>
         </tbody>
